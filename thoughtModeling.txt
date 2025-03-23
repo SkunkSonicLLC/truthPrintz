@@ -1,0 +1,310 @@
+class DecisionMakingSystem:
+    def __init__(self):
+        self.__emotional_triggers = []
+        self.__logical_gates = {}
+        self.__contextual_data = {}
+        self.__ethical_considerations = {
+            "harm_prevention": True,
+            "fairness": True,
+            "autonomy": True,
+            "beneficence": True
+        }
+        self.__decision_history = []
+        
+    def detect_emotion(self, situation):
+        """
+        Identifies emotional triggers from a given situation
+        Returns a list of detected emotions and their intensity
+        """
+        detected_emotions = []
+        # Implementation for emotion detection
+        # This could use sentiment analysis, physiological indicators, etc.
+        
+        # Example implementation
+        if "threat" in situation:
+            detected_emotions.append({"type": "fear", "intensity": 0.7})
+        if "loss" in situation:
+            detected_emotions.append({"type": "sadness", "intensity": 0.5})
+        
+        # Store detected emotions as triggers
+        self.__emotional_triggers = detected_emotions
+        return detected_emotions
+    
+    def apply_logic_gate(self, emotion_type, intensity_threshold=0.6):
+        """
+        Initiates structured delay and logical questioning based on emotion type
+        Returns a set of logical questions to consider
+        """
+        logical_questions = []
+        
+        # Generic logic gates - these would be customized based on emotion type
+        if emotion_type == "fear":
+            logical_questions = [
+                "What is the actual probability of the feared outcome?",
+                "What evidence supports this fear?",
+                "What resources do I have to address this situation?",
+                "What are the worst, best, and most likely outcomes?"
+            ]
+        elif emotion_type == "anger":
+            logical_questions = [
+                "What is the actual cause of this situation?",
+                "Are there alternative explanations for what happened?",
+                "What are the consequences of acting on this anger?",
+                "What would be a proportionate response?"
+            ]
+        
+        # Store the applied logic gate
+        self.__logical_gates[emotion_type] = logical_questions
+        
+        return logical_questions
+    
+    def analyze_context(self, situation_data):
+        """
+        Integrates external data, ethical rules, and scenario modeling
+        Returns an analysis of the situation context
+        """
+        # Store contextual data
+        self.__contextual_data = situation_data
+        
+        # Perform ethical analysis
+        ethical_analysis = {}
+        for principle, active in self.__ethical_considerations.items():
+            if active:
+                if principle == "harm_prevention":
+                    ethical_analysis[principle] = self.__analyze_harm(situation_data)
+                elif principle == "fairness":
+                    ethical_analysis[principle] = self.__analyze_fairness(situation_data)
+                # Add more ethical principles as needed
+        
+        # Scenario modeling
+        scenarios = self.__generate_scenarios(situation_data)
+        
+        return {
+            "ethical_analysis": ethical_analysis,
+            "scenarios": scenarios,
+            "context_summary": self.__summarize_context(situation_data)
+        }
+    
+    def generate_decision(self):
+        """
+        Produces an action plan balancing logic and emotional awareness
+        Returns a decision object with action steps
+        """
+        # Combine logical analysis with emotional awareness
+        decision = {
+            "primary_action": None,
+            "alternative_actions": [],
+            "emotional_considerations": [],
+            "logical_basis": [],
+            "ethical_alignment": {}
+        }
+        
+        # Implementation would balance logical gates with emotional triggers
+        # while considering contextual data and ethical considerations
+        
+        # Example implementation
+        if self.__contextual_data.get("urgency", 0) > 0.8:
+            # Emergency situation requires immediate action
+            decision["primary_action"] = self.__get_emergency_action()
+        else:
+            # Normal decision-making process
+            decision["primary_action"] = self.__select_optimal_action()
+            decision["alternative_actions"] = self.__generate_alternatives()
+            
+        # Add emotional awareness elements
+        for emotion in self.__emotional_triggers:
+            if emotion["intensity"] > 0.3:
+                decision["emotional_considerations"].append({
+                    "emotion": emotion["type"],
+                    "management_strategy": self.__get_emotion_strategy(emotion["type"])
+                })
+                
+        # Record the decision in history
+        self.__decision_history.append(decision)
+        
+        return decision
+    
+    def evaluate_outcome(self, actual_outcome):
+        """
+        Assesses the decision's effectiveness and refines future responses
+        Returns an evaluation report
+        """
+        if not self.__decision_history:
+            return {"error": "No decision to evaluate"}
+            
+        last_decision = self.__decision_history[-1]
+        
+        # Compare actual outcome with predicted outcomes
+        evaluation = {
+            "success_rate": self.__calculate_success(last_decision, actual_outcome),
+            "emotional_impact": self.__assess_emotional_impact(actual_outcome),
+            "ethical_alignment": self.__check_ethical_alignment(actual_outcome),
+            "lessons_learned": [],
+            "system_updates": []
+        }
+        
+        # Update the system based on outcome
+        self.__refine_system(evaluation)
+        
+        return evaluation
+    
+    # Private helper methods
+    def __analyze_harm(self, data):
+        # Implementation for harm analysis
+        return {"harm_likelihood": 0.3, "harm_severity": 0.5}
+    
+    def __analyze_fairness(self, data):
+        # Implementation for fairness analysis
+        return {"equality_score": 0.7, "equity_score": 0.6}
+    
+    def __generate_scenarios(self, data):
+        # Implementation for scenario generation
+        return [
+            {"description": "Best case scenario", "probability": 0.2},
+            {"description": "Most likely scenario", "probability": 0.6},
+            {"description": "Worst case scenario", "probability": 0.2}
+        ]
+    
+    def __summarize_context(self, data):
+        # Implementation for context summarization
+        return "Summary of situation context"
+    
+    def __get_emergency_action(self):
+        # Implementation for emergency action selection
+        return {"action": "Emergency protocol", "rationale": "Urgent situation detected"}
+    
+    def __select_optimal_action(self):
+        # Implementation for optimal action selection
+        return {"action": "Recommended action", "rationale": "Based on logical analysis"}
+    
+    def __generate_alternatives(self):
+        # Implementation for alternative action generation
+        return [
+            {"action": "Alternative 1", "rationale": "Secondary option"},
+            {"action": "Alternative 2", "rationale": "Tertiary option"}
+        ]
+    
+    def __get_emotion_strategy(self, emotion_type):
+        # Implementation for emotion management strategy
+        strategies = {
+            "fear": "Acknowledge fear, focus on preparedness and risk assessment",
+            "anger": "Allow cooling period, consider constructive expression",
+            "sadness": "Process feelings, seek support if needed"
+        }
+        return strategies.get(emotion_type, "Observe and acknowledge the emotion")
+    
+    def __calculate_success(self, decision, outcome):
+        # Implementation for success calculation
+        return 0.7  # Example success rate
+    
+    def __assess_emotional_impact(self, outcome):
+        # Implementation for emotional impact assessment
+        return {"satisfaction": 0.6, "stress_reduction": 0.5}
+    
+    def __check_ethical_alignment(self, outcome):
+        # Implementation for ethical alignment check
+        return {"overall_alignment": 0.8, "areas_of_concern": []}
+    
+    def __refine_system(self, evaluation):
+        # Implementation for system refinement based on evaluation
+        if evaluation["success_rate"] < 0.5:
+            # Add a lesson learned
+            evaluation["lessons_learned"].append("Decision effectiveness below threshold")
+            # Update the system
+            evaluation["system_updates"].append("Adjusted decision parameters")
+
+
+# Example of a specialized decision system using inheritance
+class CrisisManagementSystem(DecisionMakingSystem):
+    def __init__(self):
+        super().__init__()
+        self.__crisis_protocols = {
+            "natural_disaster": ["evacuation", "resource_allocation", "communication"],
+            "financial_crisis": ["asset_protection", "stakeholder_communication", "recovery_planning"],
+            "health_emergency": ["containment", "treatment", "prevention"]
+        }
+        
+    # Override the apply_logic_gate method to implement crisis-specific logic
+    def apply_logic_gate(self, emotion_type, intensity_threshold=0.4):
+        """
+        Crisis-specific implementation with lower threshold for emotional triggers
+        """
+        # Get the base logical questions
+        base_questions = super().apply_logic_gate(emotion_type, intensity_threshold)
+        
+        # Add crisis-specific questions
+        crisis_questions = [
+            "What is the immediate threat to life or safety?",
+            "What resources are available for immediate deployment?",
+            "Who needs to be notified or evacuated?",
+            "What are the short-term and long-term recovery requirements?"
+        ]
+        
+        # Combine base questions with crisis-specific questions
+        return base_questions + crisis_questions
+    
+    # Add crisis-specific methods
+    def activate_crisis_protocol(self, crisis_type):
+        """
+        Activates a specific crisis protocol based on the type of crisis
+        """
+        if crisis_type in self.__crisis_protocols:
+            return {
+                "protocol_activated": crisis_type,
+                "steps": self.__crisis_protocols[crisis_type],
+                "status": "active"
+            }
+        else:
+            return {
+                "error": f"No protocol available for {crisis_type}",
+                "status": "inactive"
+            }
+
+# Example of another specialized decision system
+class DiplomaticDecisionSystem(DecisionMakingSystem):
+    def __init__(self):
+        super().__init__()
+        self.__diplomatic_principles = {
+            "sovereignty": 0.9,
+            "mutual_benefit": 0.8,
+            "non_interference": 0.7,
+            "peaceful_resolution": 0.95
+        }
+        
+    # Override the analyze_context method to include diplomatic considerations
+    def analyze_context(self, situation_data):
+        """
+        Diplomatic-specific context analysis including international relations
+        """
+        # Get the base context analysis
+        base_analysis = super().analyze_context(situation_data)
+        
+        # Add diplomatic analysis
+        diplomatic_analysis = {
+            "power_dynamics": self.__analyze_power_dynamics(situation_data),
+            "cultural_considerations": self.__analyze_cultural_factors(situation_data),
+            "historical_context": self.__analyze_historical_relations(situation_data),
+            "strategic_interests": self.__analyze_strategic_interests(situation_data)
+        }
+        
+        # Combine base analysis with diplomatic analysis
+        base_analysis["diplomatic_analysis"] = diplomatic_analysis
+        
+        return base_analysis
+
+    # Add diplomatic-specific methods
+    def __analyze_power_dynamics(self, data):
+        # Implementation for power dynamics analysis
+        return {"balance_of_power": "description", "influence_factors": []}
+    
+    def __analyze_cultural_factors(self, data):
+        # Implementation for cultural factors analysis
+        return {"cultural_differences": [], "communication_styles": {}}
+    
+    def __analyze_historical_relations(self, data):
+        # Implementation for historical relations analysis
+        return {"past_conflicts": [], "treaties": [], "cooperation_areas": []}
+    
+    def __analyze_strategic_interests(self, data):
+        # Implementation for strategic interests analysis
+        return {"economic_interests": [], "security_interests": [], "political_interests": []}

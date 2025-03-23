@@ -66,7 +66,7 @@ Code of Conduct
 We are committed to fostering an open and inclusive environment. Please review and adhere to our [Link to Code of Conduct - Will be created] to ensure respectful and constructive interactions within the community.
 
 License
-truthPrintz - Global Operating System is licensed under the Apache License 2.0.
+truthPrintz - Global Operating System is licensed under the MIT License.
 
 Contact
 For any questions or inquiries, please feel free to reach out to us through [Link to Communication Channel - e.g., Discord, Mailing List].
